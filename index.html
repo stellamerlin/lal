@@ -3,8 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Godwin & Stella - 7th Anniversary</title>
+
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
 <style>
+/* Body Background Animation */
 body {
     margin: 0;
     padding: 0;
@@ -13,22 +16,23 @@ body {
     background: linear-gradient(270deg, #ff9a9e, #fad0c4, #fbc2eb, #a6c1ee);
     background-size: 800% 800%;
     animation: gradientBG 10s ease infinite;
-    position: relative;
     min-height: 100vh;
 }
 
 @keyframes gradientBG {
-    0% {background-position:0% 50%;}
-    50% {background-position:100% 50%;}
-    100% {background-position:0% 50%;}
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
+/* Container */
 .container {
     text-align: center;
     padding: 40px 20px;
     color: #fff;
 }
 
+/* Heading */
 h1 {
     font-family: 'Great Vibes', cursive;
     font-size: 60px;
@@ -37,51 +41,53 @@ h1 {
 }
 
 p {
-    font-size: 30px;
+    font-size: 32px;
     margin-bottom: 25px;
     font-family: 'Great Vibes', cursive;
     text-shadow: 2px 2px 6px #000;
 }
 
-/* IMAGES */
+/* Image Grid */
 .images {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 15px;
+    gap: 18px;
 }
 
+/* FIXED HEAD CUT PROBLEM */
 .photo-wrapper {
-    position: relative;
     flex: 0 0 calc(50% - 20px);
+    position: relative;
 }
 
 .photo-wrapper img {
     width: 100%;
-    height: 300px; /* MORE HEIGHT - full head visible */
-    object-fit: cover;
+    height: 330px; 
+    object-fit: contain;   /* ❤️ FIX: Full face visible */
+    background: #000;      /* Adds a cinematic black border */
     border-radius: 18px;
     box-shadow: 0 8px 20px rgba(0,0,0,0.5);
-    
-    /* Fast pop animation */
+
     transform: scale(0.6);
     opacity: 0;
     animation: pop 0.8s forwards;
 }
 
-/* FAST ANIMATION DELAY */
+/* Animation Delay */
 .photo-wrapper:nth-child(1) img { animation-delay: 0.2s; }
 .photo-wrapper:nth-child(2) img { animation-delay: 0.4s; }
 .photo-wrapper:nth-child(3) img { animation-delay: 0.6s; }
 .photo-wrapper:nth-child(4) img { animation-delay: 0.8s; }
 
+/* Captions */
 .caption {
     position: absolute;
     bottom: 10px;
     width: 100%;
     color: #fff;
     font-family: 'Great Vibes', cursive;
-    font-size: 22px;
+    font-size: 24px;
     text-shadow: 2px 2px 8px #000;
     opacity: 0;
     animation: fadeIn 0.6s forwards;
@@ -93,15 +99,12 @@ p {
 .photo-wrapper:nth-child(4) .caption { animation-delay: 1.2s; }
 
 @keyframes pop { 
-    to { 
-        transform: scale(1); 
-        opacity: 1;
-    } 
+    to { transform: scale(1); opacity: 1; }
 }
 
 @keyframes fadeIn { to { opacity: 1; } }
 
-/* FLOATING HEARTS */
+/* Floating Hearts */
 .hearts {
     position: absolute;
     width: 100%;
@@ -123,7 +126,7 @@ p {
 
 .heart::before,
 .heart::after {
-    content:"";
+    content: "";
     position: absolute;
     background: red;
     width: 20px;
@@ -135,8 +138,8 @@ p {
 .heart::after { left: 10px; }
 
 @keyframes float {
-    0% { transform: translateY(100vh) rotate(0deg); opacity: 1;}
-    100% { transform: translateY(-100px) rotate(360deg); opacity: 0;}
+    0% { transform: translateY(100vh) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
 }
 
 /* Footer */
@@ -147,7 +150,7 @@ footer {
     text-align: center;
     color: #fff;
     font-family: 'Great Vibes', cursive;
-    font-size: 30px;
+    font-size: 32px;
     margin-top: 20px;
 }
 
@@ -166,17 +169,17 @@ footer {
     100% { color: #ff4b1f; }
 }
 
-/* Responsive */
-@media (max-width: 800px) {
+/* RESPONSIVE FIX */
+@media (max-width: 850px) {
     .photo-wrapper { flex: 0 0 calc(50% - 10px); }
-    img { height: 260px; }
+    .photo-wrapper img { height: 270px; }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 550px) {
     .photo-wrapper { flex: 0 0 100%; }
-    img { height: 250px; }
-    h1 { font-size: 42px; }
-    p { font-size: 20px; }
+    .photo-wrapper img { height: 260px; }
+    h1 { font-size: 44px; }
+    p { font-size: 24px; }
 }
 </style>
 </head>
@@ -225,12 +228,12 @@ footer {
 
 <script>
 const heartsContainer = document.querySelector('.hearts');
-for(let i=0;i<40;i++){
+for (let i = 0; i < 40; i++) {
     let heart = document.createElement('div');
     heart.classList.add('heart');
-    heart.style.left = Math.random()*100 + 'vw';
-    heart.style.animationDuration = (Math.random()*3 + 2) + 's';
-    heart.style.width = heart.style.height = (Math.random()*20 + 10) + 'px';
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
+    heart.style.width = heart.style.height = (Math.random() * 20 + 10) + 'px';
     heartsContainer.appendChild(heart);
 }
 </script>
